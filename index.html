@@ -23,6 +23,38 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FloorCoveringStore",
+  "name": "AAA Carpet Repair, Installation & Sales",
+  "description": "Family-owned carpet repair, installation, and sales serving Houston, TX and surrounding areas.",
+  "telephone": "+18324350305",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "6713 Sherwood Dr",
+    "addressLocality": "Houston",
+    "addressRegion": "TX",
+    "postalCode": "77021",
+    "addressCountry": "US"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "opens": "07:00",
+    "closes": "18:00"
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Houston"},
+    {"@type": "City", "name": "Sugar Land"},
+    {"@type": "City", "name": "Katy"},
+    {"@type": "City", "name": "Pearland"},
+    {"@type": "City", "name": "Cypress"},
+    {"@type": "City", "name": "Pasadena"}
+  ],
+  "priceRange": "$$"
+}
+</script>
 <style>
   :root {
     --ink: #1a1410;
@@ -973,6 +1005,9 @@
 
   .call-modal.open .call-modal-card { transform: translateY(0) scale(1); }
 
+  /* Card receives programmatic focus on open (tabindex="-1"); it is not tabbable */
+  .call-modal-card:focus { outline: none; }
+
   .call-modal-close {
     position: absolute;
     top: 1.25rem;
@@ -1148,7 +1183,6 @@
     overflow: hidden;
     position: relative;
     background: var(--cream-deep);
-    cursor: pointer;
     transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s;
     box-shadow: 0 4px 16px rgba(26, 20, 16, 0.06);
   }
@@ -2508,7 +2542,7 @@
 
 <!-- Call Modal (shown on desktop when tel: link clicked) -->
 <div class="call-modal" id="callModal" role="dialog" aria-modal="true" aria-labelledby="callModalTitle">
-  <div class="call-modal-card">
+  <div class="call-modal-card" tabindex="-1">
     <button class="call-modal-close" id="closeCallModalBtn" aria-label="Close" type="button">×</button>
     <div class="call-modal-eyebrow">— Give Us a Call</div>
     <h3 class="call-modal-title" id="callModalTitle">Let's talk about your <span class="italic">project.</span></h3>
@@ -2579,11 +2613,41 @@
       }
     }
 
+    // Focus management (WAI-ARIA APG modal dialog pattern):
+    // focus moves into the dialog on open, Tab/Shift+Tab wrap inside it,
+    // and focus returns to the invoking element on close.
+    const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), ' +
+      'select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    let lastFocused = null;
+
+    function trapFocus(event) {
+      if (event.key !== 'Tab' || !modal) return;
+      // getClientRects (not offsetParent) — the modal is position: fixed
+      const items = Array.from(modal.querySelectorAll(FOCUSABLE))
+        .filter((el) => el.getClientRects().length > 0);
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+      if (event.shiftKey) {
+        if (active === first || !modal.contains(active)) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else if (active === last || !modal.contains(active)) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
     function openCallModal() {
       if (!modal) return;
       updateOpenStatus();
+      lastFocused = document.activeElement;
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
+      const card = modal.querySelector('.call-modal-card');
+      if (card) card.focus();
     }
 
     function closeCallModal() {
@@ -2594,6 +2658,10 @@
         copyBtn.textContent = 'Copy phone number';
         copyBtn.classList.remove('copied');
       }
+      if (lastFocused && typeof lastFocused.focus === 'function') {
+        lastFocused.focus();
+      }
+      lastFocused = null;
     }
 
     async function copyNumber() {
@@ -2641,9 +2709,12 @@
     }
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && modal && modal.classList.contains('open')) {
+      if (!modal || !modal.classList.contains('open')) return;
+      if (event.key === 'Escape') {
         closeCallModal();
+        return;
       }
+      trapFocus(event);
     });
 
     // Scroll reveal
