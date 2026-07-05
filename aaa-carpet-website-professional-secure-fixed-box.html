@@ -1,0 +1,2701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  Security deployment notes:
+  1. Serve this file only over HTTPS.
+  2. Add these server headers when your host allows it:
+     Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+     X-Content-Type-Options: nosniff
+     X-Frame-Options: DENY
+     Referrer-Policy: strict-origin-when-cross-origin
+     Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  3. Do not add third-party tracking scripts unless they are trusted and included in the Content-Security-Policy.
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'self'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; upgrade-insecure-requests; block-all-mixed-content">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=()">
+<title>AAA Carpet Repair, Installation & Sales — Houston, TX</title>
+<meta name="description" content="Family-owned carpet repair, installation, and sales in Houston, TX. Three generations of honest pricing, fast turnaround, and no upselling. Call 832-435-0305 for a quote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --cream: #fef5f5;
+    --cream-deep: #fce4e4;
+    --rust: #c8201f;
+    --rust-deep: #951515;
+    --moss: #2e7d32;
+    --gold: #c8201f;
+    --paper: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 50;
+    background: rgba(250, 246, 238, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(26, 20, 16, 0.08);
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    line-height: 1;
+  }
+
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .logo .a {
+    color: var(--rust);
+    font-style: italic;
+  }
+
+  .brand-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(26, 20, 16, 0.55);
+    margin-top: 0.1rem;
+  }
+
+  .logo-line2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 0.9rem;
+    letter-spacing: 0;
+    color: var(--ink);
+    margin-top: 0.15rem;
+    line-height: 1.1;
+  }
+
+  .footer-brand .brand-tagline {
+    color: rgba(244, 237, 224, 0.55);
+    font-size: 0.65rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .nav-links a {
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--rust); }
+
+  .nav-cta {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.75rem 1.5rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.3s;
+  }
+
+  .nav-cta:hover {
+    background: var(--rust);
+    transform: translateY(-2px);
+  }
+
+  .nav-cta-group {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+  }
+
+  .nav-cta-text {
+    background: #2e7d32;
+  }
+
+  .nav-cta-text:hover {
+    background: #1f5722;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 9rem 3rem 4rem;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--rust) 0%, transparent 70%);
+    opacity: 0.08;
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rust-deep);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--rust-deep);
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.25s forwards;
+  }
+
+  h1 .italic {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--rust);
+  }
+
+  h1 .underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  h1 .underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0.1em;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: var(--gold);
+    opacity: 0.4;
+    z-index: -1;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: rgba(26, 20, 16, 0.7);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.55s forwards;
+  }
+
+  .btn-primary {
+    background: var(--rust);
+    color: var(--paper);
+    padding: 1.1rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 10px 30px rgba(200, 32, 31, 0.25);
+  }
+
+  .btn-primary:hover {
+    background: var(--rust-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(200, 32, 31, 0.35);
+  }
+
+  .btn-text {
+    background: #2e7d32;
+    color: var(--paper);
+    padding: 1.1rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 10px 30px rgba(46, 125, 50, 0.25);
+  }
+
+  .btn-text:hover {
+    background: #1f5722;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(46, 125, 50, 0.35);
+  }
+
+  .btn-secondary {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 1.1rem 0;
+    border-bottom: 2px solid var(--ink);
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--rust); border-color: var(--rust); }
+
+  /* Hero card */
+  .hero-card {
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  .review-card {
+    background: var(--cream);
+    border-radius: 24px;
+    padding: 2.5rem;
+    position: relative;
+    box-shadow: 0 30px 60px -20px rgba(26, 20, 16, 0.15);
+    transform: rotate(2deg);
+    border: 1px solid rgba(26, 20, 16, 0.05);
+  }
+
+  .review-card::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 30px;
+    font-family: 'Fraunces', serif;
+    font-size: 8rem;
+    color: var(--rust);
+    line-height: 1;
+    font-weight: 900;
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .review-text {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  .review-author {
+    font-size: 0.85rem;
+    color: rgba(26, 20, 16, 0.6);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .rating-badge {
+    position: absolute;
+    bottom: -30px;
+    right: -20px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1.25rem 1.5rem;
+    border-radius: 16px;
+    transform: rotate(-4deg);
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(26, 20, 16, 0.3);
+  }
+
+  .rating-badge .num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+  }
+
+  .rating-badge .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+    opacity: 0.7;
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 2rem 3rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin: 4rem 0 0;
+  }
+
+  .trust-item {
+    text-align: center;
+    padding: 0 1rem;
+    border-right: 1px solid rgba(244, 237, 224, 0.15);
+  }
+
+  .trust-item:last-child { border-right: none; }
+
+  .trust-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .trust-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 8rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    align-items: end;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .section-title .italic {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--rust);
+  }
+
+  .section-intro {
+    font-size: 1.05rem;
+    color: rgba(26, 20, 16, 0.7);
+    line-height: 1.6;
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(26, 20, 16, 0.04);
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px -20px rgba(26, 20, 16, 0.2);
+  }
+
+  .service-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--rust);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .service-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+  }
+
+  .service-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .service-desc {
+    color: rgba(26, 20, 16, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-features {
+    list-style: none;
+    border-top: 1px solid rgba(26, 20, 16, 0.1);
+    padding-top: 1.25rem;
+  }
+
+  .service-features li {
+    font-size: 0.85rem;
+    padding: 0.4rem 0;
+    color: rgba(26, 20, 16, 0.75);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .service-features li::before {
+    content: '→';
+    color: var(--rust);
+    font-weight: 600;
+  }
+
+  /* SERVICE AREAS */
+  .featured-area {
+    background: linear-gradient(135deg, var(--ink) 0%, #2a201a 100%);
+    color: var(--paper);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .featured-area::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--rust) 0%, transparent 70%);
+    opacity: 0.18;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .featured-area > * { position: relative; z-index: 1; }
+
+  .featured-area-tag {
+    color: var(--rust);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .featured-area-name {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.75rem;
+    line-height: 1;
+  }
+
+  .surrounding-areas-label {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(26, 20, 16, 0.5);
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .surrounding-areas-label::before,
+  .surrounding-areas-label::after {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: rgba(26, 20, 16, 0.2);
+    vertical-align: middle;
+    margin: 0 1rem;
+  }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
+  }
+
+  .area-card {
+    background: var(--cream);
+    border: 1px solid rgba(26, 20, 16, 0.04);
+    border-radius: 14px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .area-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px -10px rgba(26, 20, 16, 0.15);
+    background: var(--paper);
+  }
+
+  .area-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 8rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about::before {
+    content: 'FAMILY';
+    position: absolute;
+    bottom: -2rem;
+    right: -1rem;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 18rem;
+    color: rgba(244, 237, 224, 0.04);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    pointer-events: none;
+  }
+
+  .about-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-img {
+    background: linear-gradient(135deg, var(--rust) 0%, var(--rust-deep) 100%);
+    aspect-ratio: 4/5;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 2.5rem;
+  }
+
+  .about-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.25) 0%, transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(0, 0, 0, 0.4) 0%, transparent 60%);
+  }
+
+  .about-img-caption {
+    position: relative;
+    z-index: 1;
+    color: var(--cream);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.3;
+    max-width: 280px;
+  }
+
+  .about-img-caption strong {
+    display: block;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    color: var(--gold);
+  }
+
+  .about-eyebrow {
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 2rem;
+  }
+
+  .about-title .italic { font-style: italic; font-weight: 300; color: var(--gold); }
+
+  .about-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(244, 237, 224, 0.85);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-quote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin: 2.5rem 0;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--gold);
+    color: var(--cream);
+  }
+
+  /* REVIEWS */
+  .reviews {
+    padding: 8rem 3rem;
+    background: var(--cream-deep);
+    overflow: hidden;
+  }
+
+  .reviews-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .testimonial {
+    background: var(--paper);
+    padding: 2.5rem;
+    border-radius: 20px;
+    position: relative;
+    border: 1px solid rgba(26, 20, 16, 0.06);
+  }
+
+  .testimonial .stars { margin-bottom: 1.25rem; }
+
+  .testimonial-text {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+  }
+
+  .testimonial-author {
+    font-size: 0.85rem;
+    color: rgba(26, 20, 16, 0.6);
+    letter-spacing: 0.02em;
+    border-top: 1px solid rgba(26, 20, 16, 0.1);
+    padding-top: 1rem;
+  }
+
+  .testimonial-author strong {
+    color: var(--ink);
+    display: block;
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 8rem 3rem;
+    text-align: center;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(200, 32, 31, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(200, 32, 31, 0.1) 0%, transparent 50%),
+      var(--paper);
+  }
+
+  .cta-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-title .italic {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--rust);
+  }
+
+  .cta-sub {
+    font-size: 1.15rem;
+    color: rgba(26, 20, 16, 0.7);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+
+  .phone-display {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--rust);
+    transition: all 0.2s;
+  }
+
+  .phone-display:hover { color: var(--rust); transform: translateY(-2px); }
+
+  .contact-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .hours {
+    font-size: 0.95rem;
+    color: rgba(26, 20, 16, 0.7);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 4rem 3rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(244, 237, 224, 0.15);
+  }
+
+  .footer-brand .logo { color: var(--cream); font-size: 1.8rem; }
+  .footer-brand .logo .a { color: var(--gold); }
+
+  .footer-tagline {
+    margin-top: 1.5rem;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(244, 237, 224, 0.7);
+    max-width: 320px;
+    line-height: 1.5;
+  }
+
+  .footer-col h4 {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+  }
+
+  .footer-col a, .footer-col p {
+    display: block;
+    color: rgba(244, 237, 224, 0.75);
+    text-decoration: none;
+    padding: 0.3rem 0;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    max-width: 1400px;
+    margin: 2rem auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: rgba(244, 237, 224, 0.5);
+  }
+
+  /* CALL MODAL (desktop only) */
+  .call-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 20, 16, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .call-modal.open {
+    display: flex;
+    opacity: 1;
+  }
+
+  .call-modal-card {
+    background: var(--paper);
+    border-radius: 28px;
+    padding: 3.5rem 3rem;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px) scale(0.96);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .call-modal.open .call-modal-card { transform: translateY(0) scale(1); }
+
+  .call-modal-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: rgba(26, 20, 16, 0.5);
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .call-modal-close:hover { background: rgba(26, 20, 16, 0.08); color: var(--ink); }
+
+  .call-modal-eyebrow {
+    color: var(--rust-deep);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .call-modal-title {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .call-modal-title .italic { font-style: italic; color: var(--rust); font-weight: 300; }
+
+  .call-modal-sub {
+    color: rgba(26, 20, 16, 0.65);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .call-modal-number {
+    font-family: 'Fraunces', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .call-modal-hours {
+    font-size: 0.85rem;
+    color: rgba(26, 20, 16, 0.55);
+    margin-bottom: 2rem;
+  }
+
+  .call-modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-direction: column;
+  }
+
+  .modal-btn {
+    padding: 1rem 1.5rem;
+    border-radius: 100px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: inherit;
+  }
+
+  .modal-btn-primary {
+    background: var(--rust);
+    color: var(--paper);
+    box-shadow: 0 10px 25px rgba(200, 32, 31, 0.25);
+  }
+
+  .modal-btn-primary:hover {
+    background: var(--rust-deep);
+    transform: translateY(-2px);
+  }
+
+  .modal-btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid rgba(26, 20, 16, 0.15);
+  }
+
+  .modal-btn-secondary:hover {
+    border-color: var(--ink);
+    background: var(--cream);
+  }
+
+  .modal-btn.copied {
+    background: var(--moss) !important;
+    color: var(--paper) !important;
+  }
+
+  /* Status indicator */
+  .open-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: rgba(26, 20, 16, 0.65);
+    margin-bottom: 1.5rem;
+  }
+
+  .open-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--moss);
+    box-shadow: 0 0 0 0 var(--moss);
+    animation: pulse 2s infinite;
+  }
+
+  .open-dot.closed { background: #999; animation: none; }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(74, 92, 58, 0.5); }
+    70% { box-shadow: 0 0 0 10px rgba(74, 92, 58, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 92, 58, 0); }
+  }
+
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* GALLERY */
+  .gallery {
+    padding: 8rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    grid-template-rows: 320px 320px;
+    gap: 1rem;
+    margin-top: 4rem;
+  }
+
+  .gallery-item {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    background: var(--cream-deep);
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s;
+    box-shadow: 0 4px 16px rgba(26, 20, 16, 0.06);
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 50px -15px rgba(26, 20, 16, 0.25);
+  }
+
+  .gallery-item:nth-child(1) { grid-row: span 2; }
+  .gallery-item:nth-child(4) { grid-column: span 2; }
+
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: block;
+  }
+
+  .gallery-item:hover .gallery-img { transform: scale(1.06); }
+
+  /* Tag chip in corner */
+  .gallery-tag {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.9rem;
+    border-radius: 100px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+
+  /* Always-visible subtle gradient at bottom for legibility */
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(26, 20, 16, 0.65), transparent);
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .gallery-item:hover::after { opacity: 1; }
+
+  .gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1.75rem;
+    color: var(--paper);
+    z-index: 1;
+    transform: translateY(8px);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .gallery-item:hover .gallery-caption { transform: translateY(0); }
+
+  .gallery-caption-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.25rem;
+  }
+
+  .gallery-item:nth-child(1) .gallery-caption-title { font-size: 1.75rem; }
+
+  .gallery-caption-sub {
+    font-size: 0.8rem;
+    opacity: 0.85;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  /* Gallery footer band */
+  .gallery-footer {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 2rem 2.5rem;
+    background: var(--cream);
+    border-radius: 20px;
+    border: 1px solid rgba(26, 20, 16, 0.05);
+  }
+
+  .gallery-stat { flex-shrink: 0; }
+
+  .gallery-stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--rust);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .gallery-stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(26, 20, 16, 0.6);
+    margin-top: 0.35rem;
+    font-weight: 600;
+  }
+
+  .gallery-divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(26, 20, 16, 0.15);
+    flex-shrink: 0;
+  }
+
+  .gallery-footer-text {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .gallery-link {
+    color: var(--rust);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid var(--rust);
+    padding-bottom: 1px;
+    transition: all 0.2s;
+  }
+
+  .gallery-link:hover { color: var(--rust-deep); border-color: var(--rust-deep); }
+
+  /* FLOATING CTA */
+  .float-cta {
+    position: fixed;
+    bottom: 5rem;
+    right: 1.5rem;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--rust);
+    color: var(--paper);
+    padding: 1rem 1.5rem 1rem 1.1rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 15px 40px rgba(200, 32, 31, 0.4), 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: translateY(120px);
+    opacity: 0;
+  }
+
+  .float-cta.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .float-cta:hover {
+    background: var(--rust-deep);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 50px rgba(200, 32, 31, 0.5), 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .float-cta-icon {
+    width: 38px;
+    height: 38px;
+    background: rgba(250, 246, 238, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .float-cta-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Ring pulse on phone icon */
+  .float-cta::before {
+    content: '';
+    position: absolute;
+    left: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid var(--paper);
+    opacity: 0;
+    animation: ringPulse 2.5s infinite;
+  }
+
+  @keyframes ringPulse {
+    0% { transform: translateY(-50%) scale(0.8); opacity: 0.6; }
+    100% { transform: translateY(-50%) scale(1.6); opacity: 0; }
+  }
+
+  .float-cta-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .float-cta-text small {
+    font-size: 0.7rem;
+    font-weight: 500;
+    opacity: 0.85;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .nav-cta { padding: 0.55rem 0.9rem; font-size: 0.75rem; }
+    .nav-cta-group { gap: 0.4rem; }
+    nav .logo { font-size: 1.3rem; }
+    nav .logo-line2 { font-size: 0.72rem; letter-spacing: 0.01em; }
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 7rem 1.5rem 3rem;
+      gap: 5rem;
+    }
+    .hero-ctas { flex-direction: column; align-items: stretch; }
+    .btn-primary, .btn-text { justify-content: center; }
+    .trust-bar { grid-template-columns: repeat(2, 1fr); padding: 1.5rem; }
+    .trust-item { border-right: none; padding: 1rem; }
+    .services, .about, .reviews, .cta-section, .gallery { padding: 5rem 1.5rem; }
+    .section-header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .service-grid, .review-grid { grid-template-columns: 1fr; }
+    .areas-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .featured-area { padding: 2.5rem 1.5rem; margin-bottom: 2.5rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 220px 220px 220px;
+      gap: 0.75rem;
+    }
+    .gallery-item:nth-child(1) { grid-row: span 1; grid-column: span 2; }
+    .gallery-item:nth-child(4) { grid-column: span 1; }
+    .gallery-item .gallery-caption { transform: translateY(0); }
+    .gallery-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1.75rem;
+    }
+    .gallery-divider { display: none; }
+    .gallery-footer-text { font-size: 1.1rem; }
+    .float-cta {
+      bottom: 4.5rem;
+      right: 1rem;
+      padding: 0.85rem 1.25rem 0.85rem 0.9rem;
+      font-size: 0.9rem;
+    }
+    .float-cta-text small { display: none; }
+  }
+
+  /* ── CARPET INSTALLER ANIMATION ── */
+  .roller-track {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 95px;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+  }
+
+  /* The unrolled carpet that grows behind the worker */
+  .carpet-trail {
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    height: 8px;
+    width: 0;
+    background: linear-gradient(180deg, #c8201f 0%, #951515 100%);
+    border-top: 1.5px solid #1a1410;
+    border-bottom: 1.5px solid #5a0808;
+    animation: trail 24s linear infinite;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  @keyframes trail {
+    0%   { width: 0; }
+    95%  { width: 100%; }
+    100% { width: 100%; opacity: 0; }
+  }
+
+  .roller {
+    position: absolute;
+    bottom: 0;
+    left: -110px;
+    width: 110px;
+    height: 90px;
+    animation: walk 26s linear infinite;
+  }
+
+  @keyframes walk {
+    0%   { left: -110px; }
+    100% { left: 100%; }
+  }
+
+  /* slight bob as he walks */
+  .roller-bob {
+    width: 100%;
+    height: 100%;
+    animation: workerBob 0.55s ease-in-out infinite alternate;
+    transform-origin: center bottom;
+  }
+
+  @keyframes workerBob {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-1.5px); }
+  }
+
+  /* legs swing from the hip */
+  .leg-front, .leg-back {
+    transform-box: fill-box;
+    transform-origin: 50% 0;
+  }
+  .leg-front {
+    animation: legFront 0.55s ease-in-out infinite alternate;
+  }
+  .leg-back {
+    animation: legBack 0.55s ease-in-out infinite alternate;
+  }
+  @keyframes legFront {
+    0%   { transform: rotate(-12deg); }
+    100% { transform: rotate(12deg); }
+  }
+  @keyframes legBack {
+    0%   { transform: rotate(12deg); }
+    100% { transform: rotate(-12deg); }
+  }
+
+  /* the carpet roll he's pushing rotates */
+  .carpet-roll-spin {
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: rollSpin 0.55s linear infinite;
+  }
+  @keyframes rollSpin {
+    to { transform: rotate(-360deg); }
+  }
+
+  /* On small screens, shrink the worker a bit */
+  @media (max-width: 500px) {
+    .roller { width: 85px; height: 70px; }
+    .roller-track { height: 75px; }
+    .carpet-trail { height: 6px; bottom: 4px; }
+  }
+
+
+  /* ─────────────────────────────────────────────
+     PROFESSIONAL POLISH OVERRIDES
+     Cleaner commercial look, stronger trust cues,
+     calmer colors, and less novelty animation.
+  ───────────────────────────────────────────── */
+  :root {
+    --ink: #16191f;
+    --cream: #f7f3ee;
+    --cream-deep: #efe7dc;
+    --rust: #b91f1d;
+    --rust-deep: #831715;
+    --moss: #256f3a;
+    --gold: #c89b3c;
+    --paper: #ffffff;
+    --slate: #5d6673;
+    --line: rgba(22, 25, 31, 0.10);
+    --shadow-soft: 0 18px 50px rgba(22, 25, 31, 0.10);
+    --shadow-card: 0 24px 70px rgba(22, 25, 31, 0.13);
+  }
+
+  body {
+    background: linear-gradient(180deg, #ffffff 0%, #fbfaf7 42%, #ffffff 100%);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .grain { display: none; }
+
+  nav {
+    padding: 1rem 3rem;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 10px 30px rgba(22, 25, 31, 0.06);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .logo {
+    letter-spacing: -0.01em;
+    font-size: 1.45rem;
+  }
+
+  .logo-line2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  .nav-links {
+    gap: 1.6rem;
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+  }
+
+  .nav-cta,
+  .btn-primary,
+  .btn-text,
+  .modal-btn,
+  .float-cta {
+    box-shadow: 0 12px 28px rgba(22, 25, 31, 0.14);
+  }
+
+  .hero {
+    min-height: 92vh;
+    padding-top: 8rem;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.88) 55%, rgba(247,243,238,0.76) 100%),
+      radial-gradient(circle at 86% 24%, rgba(185,31,29,0.10) 0%, transparent 34%);
+  }
+
+  .hero::before { display: none; }
+
+  .eyebrow {
+    color: var(--rust-deep);
+    background: rgba(185, 31, 29, 0.08);
+    padding: 0.55rem 0.85rem;
+    border-radius: 100px;
+    letter-spacing: 0.12em;
+    margin-bottom: 1.25rem;
+  }
+
+  .eyebrow::before { display: none; }
+
+  h1 {
+    max-width: 780px;
+    font-weight: 600;
+  }
+
+  h1 .italic { color: var(--rust); }
+
+  h1 .underline::after {
+    height: 0.16em;
+    background: rgba(200, 155, 60, 0.42);
+    bottom: 0.03em;
+  }
+
+  .hero-sub,
+  .section-intro,
+  .cta-sub,
+  .about-text,
+  .service-desc {
+    color: rgba(22, 25, 31, 0.70);
+  }
+
+  .hero-proof {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.6rem;
+    max-width: 620px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.68s forwards;
+  }
+
+  .hero-proof-item {
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 0.85rem 0.95rem;
+    box-shadow: 0 10px 24px rgba(22, 25, 31, 0.06);
+  }
+
+  .hero-proof-item strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+  }
+
+  .hero-proof-item span {
+    display: block;
+    font-size: 0.73rem;
+    color: var(--slate);
+    letter-spacing: 0.02em;
+  }
+
+  .review-card,
+  .testimonial,
+  .service-card,
+  .area-card,
+  .gallery-footer,
+  .call-modal-card {
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--line);
+  }
+
+  .review-card {
+    background: #fff;
+    transform: none;
+    padding: 2.6rem;
+  }
+
+  .review-card::before {
+    color: rgba(185, 31, 29, 0.10);
+  }
+
+  .rating-badge {
+    background: linear-gradient(135deg, var(--ink), #2a3039);
+    transform: none;
+    bottom: -24px;
+    right: 18px;
+  }
+
+  .trust-bar {
+    background: linear-gradient(135deg, #16191f 0%, #252b34 100%);
+    margin-top: 0;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  .trust-num { color: var(--gold); }
+
+  .services,
+  .gallery,
+  .reviews,
+  .cta-section,
+  .about {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+
+  .section-title,
+  .cta-title,
+  .about-title,
+  .service-name,
+  .gallery-caption-title {
+    letter-spacing: -0.025em;
+  }
+
+  .service-card,
+  .area-card,
+  .testimonial {
+    background: #fff;
+  }
+
+  .service-card:hover,
+  .area-card:hover,
+  .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .service-num,
+  .featured-area-tag,
+  .about-eyebrow,
+  .footer-col h4 {
+    color: var(--gold);
+  }
+
+  .featured-area {
+    background: linear-gradient(135deg, #16191f 0%, #2b313a 100%);
+    box-shadow: var(--shadow-card);
+  }
+
+  .about {
+    background: linear-gradient(135deg, #16191f 0%, #252b34 100%);
+  }
+
+  .about-img {
+    background: linear-gradient(135deg, #831715 0%, #b91f1d 55%, #c89b3c 130%);
+    box-shadow: var(--shadow-card);
+  }
+
+  .gallery .section-intro em { display: none; }
+
+  .gallery-item {
+    border: 1px solid rgba(255,255,255,0.7);
+    box-shadow: 0 18px 42px rgba(22,25,31,0.11);
+  }
+
+  .gallery-tag {
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(255,255,255,0.8);
+  }
+
+  .reviews {
+    background: linear-gradient(180deg, #f7f3ee 0%, #ffffff 100%);
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f7f3ee 100%);
+  }
+
+  footer {
+    background: #111419;
+  }
+
+  .roller-track { display: none; }
+
+  @media (max-width: 900px) {
+    nav { padding: 0.85rem 1.1rem; }
+    .hero { min-height: auto; padding-top: 7.5rem; }
+    .hero-proof { grid-template-columns: 1fr; }
+    .review-card { padding: 2rem; }
+  }
+
+
+
+  /* Mobile fix: keep the red family-owned card from becoming oversized */
+  @media (max-width: 900px) {
+    .about-img {
+      aspect-ratio: auto !important;
+      min-height: 320px;
+      max-height: 360px;
+      width: 100%;
+      padding: 2rem;
+      border-radius: 22px;
+    }
+
+    .about-img-caption {
+      font-size: 1.15rem;
+      line-height: 1.35;
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .about-img {
+      min-height: 280px;
+      max-height: 320px;
+      padding: 1.6rem;
+      border-radius: 20px;
+    }
+
+    .about-img-caption {
+      font-size: 1.05rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<nav>
+  <div class="brand">
+    <div class="logo"><span class="a">A</span><span class="a">A</span><span class="a">A</span> Carpet</div>
+    <div class="logo-line2">Repair, Installation &amp; Sales</div>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#areas">Service Areas</a>
+    <a href="#gallery">Our Work</a>
+    <a href="#about">Our Story</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-cta-group">
+    <a href="sms:+18324350305?&body=Hi%20AAA%20Carpet%2C%20I%27d%20like%20a%20quote." class="nav-cta nav-cta-text">Text Photos</a>
+    <a href="tel:8324350305" class="nav-cta">Call Now</a>
+  </div>
+
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Family-Owned · Three Generations · Houston, TX</div>
+    <h1>
+      Carpet done <span class="italic">right.</span><br>
+      <span class="underline">No upsell.</span><br>
+      No surprises.
+    </h1>
+    <p class="hero-sub">
+      Honest estimates, fast installs, and craftsmanship you can feel under your feet. Three generations of Houston families have trusted AAA Carpet for repair, installation, and sales — backed by hundreds of five-star customer reviews.
+    </p>
+    <div class="hero-ctas">
+      <a href="tel:8324350305" class="btn-primary">Call for a Quote — 832-435-0305 →</a>
+      <a href="sms:+18324350305?&body=Hi%20AAA%20Carpet%2C%20I%27d%20like%20a%20quote." class="btn-text">Text Photos for Fast Quote →</a>
+    </div>
+    <div class="hero-proof" aria-label="AAA Carpet service promises">
+      <div class="hero-proof-item"><strong>Licensed local pros</strong><span>Houston-area carpet specialists</span></div>
+      <div class="hero-proof-item"><strong>Clear estimates</strong><span>No pressure. No surprise upsells.</span></div>
+      <div class="hero-proof-item"><strong>Fast response</strong><span>Call or text photos for pricing</span></div>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">No upsell. They took time to explain exactly what I'd be getting. The team was quick and efficient — done in about 3 hours.</p>
+      <p class="review-author">— Verified Google Review</p>
+    </div>
+    <div class="rating-badge">
+      <span class="num">5.0</span>
+      <span class="label">558+ Reviews</span>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="trust-num">5.0★</div>
+    <div class="trust-label">Google Rating</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">558+</div>
+    <div class="trust-label">Happy Customers</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">3 Gen</div>
+    <div class="trust-label">Family-Owned</div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-num">Same-Day</div>
+    <div class="trust-label">Service Available</div>
+  </div>
+</div>
+
+<section class="services" id="services">
+  <div class="section-header reveal">
+    <h2 class="section-title">What we <span class="italic">do.</span></h2>
+    <p class="section-intro">From a single stretched bedroom carpet to a full-home install, we handle every kind of carpet job in Houston — and we'll tell you straight if you don't actually need what you think you do.</p>
+  </div>
+
+  <div class="service-grid">
+    <div class="service-card reveal">
+      <div class="service-num">— 01</div>
+      <svg class="service-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="8" y="20" width="48" height="32" rx="2"/>
+        <path d="M8 30h48M8 40h48M20 20v32M36 20v32"/>
+      </svg>
+      <h3 class="service-name">New Installation</h3>
+      <p class="service-desc">Whole-home installs, single rooms, stairs, commercial spaces. We carry quality carpet at competitive prices and explain every option.</p>
+      <ul class="service-features">
+        <li>Free in-home measurement</li>
+        <li>Wide selection of carpets & padding</li>
+        <li>Most jobs done same-day</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">— 02</div>
+      <svg class="service-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 32l8-8 16 16 16-16"/>
+        <path d="M44 24h8v8"/>
+        <rect x="8" y="44" width="48" height="8" rx="1"/>
+      </svg>
+      <h3 class="service-name">Repair & Stretching</h3>
+      <p class="service-desc">Wrinkles, bubbles, pet damage, seam issues, transitions. We fix what other installers got wrong — and we do it fast.</p>
+      <ul class="service-features">
+        <li>Power-stretching specialists</li>
+        <li>Patch & seam repair</li>
+        <li>Same-day appointments common</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-num">— 03</div>
+      <svg class="service-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M32 8L52 20v24L32 56 12 44V20z"/>
+        <path d="M32 8v48M12 20l40 24M52 20L12 44"/>
+      </svg>
+      <h3 class="service-name">Carpet Sales</h3>
+      <p class="service-desc">Browse a wide range of residential and commercial carpet — plush, berber, frieze, loop. We help you pick what fits your home and budget.</p>
+      <ul class="service-features">
+        <li>Honest product comparisons</li>
+        <li>No-pressure consultations</li>
+        <li>Competitive pricing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="areas" style="padding-top: 0;">
+  <div class="section-header reveal">
+    <h2 class="section-title">Proudly serving <span class="italic">Houston.</span></h2>
+    <p class="section-intro">AAA Carpet Repair, Installation & Sales serves homeowners, apartments, and businesses throughout Houston and the surrounding communities with carpet repair, stretching, installation, and sales.</p>
+  </div>
+
+  <div class="featured-area reveal">
+    <div class="featured-area-tag">— Home Base</div>
+    <h3 class="featured-area-name">Houston, TX</h3>
+    <a href="tel:8324350305" class="btn-primary">Call 832-435-0305 →</a>
+  </div>
+
+  <div class="surrounding-areas-label reveal">Also serving these surrounding areas</div>
+
+  <div class="areas-grid">
+    <div class="area-card reveal">
+      <h4 class="area-name">Sugar Land</h4>
+    </div>
+
+    <div class="area-card reveal">
+      <h4 class="area-name">Katy</h4>
+    </div>
+
+    <div class="area-card reveal">
+      <h4 class="area-name">Pearland</h4>
+    </div>
+
+    <div class="area-card reveal">
+      <h4 class="area-name">Cypress</h4>
+    </div>
+
+    <div class="area-card reveal">
+      <h4 class="area-name">Pasadena</h4>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-img reveal">
+      <div class="about-img-caption">
+        <strong>Family-Owned</strong>
+        Three generations of carpet craft, serving Houston neighborhoods one job at a time.
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="about-eyebrow">— The AAA Difference</div>
+      <h2 class="about-title">A family business that <span class="italic">cares</span> about the work.</h2>
+      <p class="about-text">
+        We're not a franchise. There's no call center, no commissioned salespeople, no high-pressure pitch. When you call AAA Carpet, you talk to family — and our crew shows up to your job ready to work.
+      </p>
+      <p class="about-text">
+        That's why we've built hundreds of five-star reviews the slow way: one honest job at a time. Most of our work comes from referrals, repeat customers, and folks calling us after another installer made a mess of their floors.
+      </p>
+      <blockquote class="about-quote">
+        "These are the types of small businesses that should be supported. Professional, courteous, knowledgeable, and respectful of my home."
+      </blockquote>
+      <a href="tel:8324350305" class="btn-primary">Get Your Quote →</a>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="section-header reveal">
+    <h2 class="section-title">Our <span class="italic">work.</span></h2>
+    <p class="section-intro">From whole-home replacements to single-room stretches, every job gets the same craftsmanship.</p>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item reveal">
+      <svg class="gallery-img gallery-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-label="Featured living room install">
+        <defs>
+          <linearGradient id="wall1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="100%" stop-color="#f5f1f1"/>
+          </linearGradient>
+          <pattern id="carpetTex1" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+            <rect width="6" height="6" fill="#c8201f"/>
+            <circle cx="3" cy="3" r="0.8" fill="#951515" opacity="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="800" height="600" fill="url(#wall1)"/>
+        <!-- window light -->
+        <rect x="500" y="60" width="180" height="240" fill="#ffffff" opacity="0.9"/>
+        <rect x="500" y="60" width="180" height="240" fill="none" stroke="#1a1410" stroke-width="2" opacity="0.12"/>
+        <line x1="590" y1="60" x2="590" y2="300" stroke="#1a1410" stroke-width="2" opacity="0.12"/>
+        <line x1="500" y1="180" x2="680" y2="180" stroke="#1a1410" stroke-width="2" opacity="0.12"/>
+        <!-- floor -->
+        <polygon points="0,380 800,380 800,600 0,600" fill="url(#carpetTex1)"/>
+        <polygon points="0,380 800,380 800,420 0,420" fill="#1a1410" opacity="0.12"/>
+        <!-- sofa silhouette -->
+        <rect x="80" y="280" width="280" height="120" rx="14" fill="#ffffff" stroke="#1a1410" stroke-width="2" opacity="0.95"/>
+        <rect x="80" y="260" width="280" height="40" rx="10" fill="#fce4e4" stroke="#1a1410" stroke-width="2"/>
+        <rect x="100" y="290" width="80" height="60" rx="8" fill="#c8201f" opacity="0.9"/>
+        <rect x="270" y="290" width="80" height="60" rx="8" fill="#c8201f" opacity="0.9"/>
+        <!-- coffee table -->
+        <rect x="160" y="430" width="220" height="50" rx="4" fill="#1a1410" opacity="0.8"/>
+        <!-- plant pot + leaves -->
+        <rect x="600" y="340" width="40" height="60" fill="#1a1410" opacity="0.7"/>
+        <ellipse cx="620" cy="300" rx="50" ry="60" fill="#1a1410" opacity="0.15"/>
+        <!-- subtle red accent glow -->
+        <circle cx="600" cy="180" r="200" fill="#c8201f" opacity="0.04"/>
+      </svg>
+      <div class="gallery-tag">Featured Work</div>
+      <div class="gallery-caption">
+        <div class="gallery-caption-title">Full-Home Install</div>
+        <div class="gallery-caption-sub">Houston, TX</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal">
+      <svg class="gallery-img gallery-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-label="Living space carpet detail">
+        <defs>
+          <pattern id="carpetTex2" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+            <rect width="4" height="4" fill="#e84a4a"/>
+            <circle cx="2" cy="2" r="0.6" fill="#c8201f" opacity="0.7"/>
+          </pattern>
+        </defs>
+        <rect width="800" height="600" fill="url(#carpetTex2)"/>
+        <!-- close-up fiber texture lines -->
+        <g opacity="0.4">
+          <line x1="0" y1="100" x2="800" y2="80" stroke="#951515" stroke-width="1"/>
+          <line x1="0" y1="250" x2="800" y2="240" stroke="#951515" stroke-width="1"/>
+          <line x1="0" y1="400" x2="800" y2="420" stroke="#951515" stroke-width="1"/>
+          <line x1="0" y1="540" x2="800" y2="560" stroke="#951515" stroke-width="1"/>
+        </g>
+        <!-- soft light wash -->
+        <ellipse cx="400" cy="300" rx="500" ry="350" fill="#ffffff" opacity="0.15"/>
+        <ellipse cx="200" cy="100" rx="200" ry="150" fill="#ffffff" opacity="0.25"/>
+      </svg>
+      <div class="gallery-caption">
+        <div class="gallery-caption-title">Living Space</div>
+        <div class="gallery-caption-sub">Carpet replacement</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal">
+      <svg class="gallery-img gallery-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-label="Bedroom plush carpet install">
+        <defs>
+          <linearGradient id="wall3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fef5f5"/>
+            <stop offset="100%" stop-color="#fce4e4"/>
+          </linearGradient>
+          <pattern id="carpetTex3" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse">
+            <rect width="5" height="5" fill="#c8201f"/>
+            <circle cx="2.5" cy="2.5" r="0.7" fill="#951515" opacity="0.6"/>
+          </pattern>
+        </defs>
+        <rect width="800" height="600" fill="url(#wall3)"/>
+        <!-- bed silhouette -->
+        <rect x="100" y="200" width="600" height="180" rx="8" fill="#ffffff" stroke="#1a1410" stroke-width="2"/>
+        <rect x="100" y="180" width="600" height="40" rx="6" fill="#1a1410" opacity="0.15"/>
+        <!-- pillows -->
+        <rect x="140" y="190" width="160" height="80" rx="12" fill="#ffffff" stroke="#c8201f" stroke-width="2"/>
+        <rect x="320" y="190" width="160" height="80" rx="12" fill="#fce4e4" stroke="#c8201f" stroke-width="2"/>
+        <!-- bed shadow -->
+        <ellipse cx="400" cy="395" rx="320" ry="15" fill="#1a1410" opacity="0.18"/>
+        <!-- floor -->
+        <rect x="0" y="380" width="800" height="220" fill="url(#carpetTex3)"/>
+        <!-- warm lamp glow -->
+        <circle cx="700" cy="160" r="120" fill="#c8201f" opacity="0.12"/>
+        <circle cx="700" cy="160" r="60" fill="#ffffff" opacity="0.6"/>
+      </svg>
+      <div class="gallery-caption">
+        <div class="gallery-caption-title">Bedroom Install</div>
+        <div class="gallery-caption-sub">Plush carpet & padding</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal">
+      <svg class="gallery-img gallery-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-label="Stairs and hallway install">
+        <defs>
+          <linearGradient id="wall4" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="100%" stop-color="#f5f1f1"/>
+          </linearGradient>
+          <pattern id="carpetTex4" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse">
+            <rect width="5" height="5" fill="#c8201f"/>
+            <circle cx="2.5" cy="2.5" r="0.7" fill="#951515" opacity="0.7"/>
+          </pattern>
+        </defs>
+        <rect width="800" height="600" fill="url(#wall4)"/>
+        <!-- stairs going up - perspective view -->
+        <g>
+          <polygon points="100,580 700,580 700,560 100,560" fill="url(#carpetTex4)"/>
+          <polygon points="100,560 700,560 700,540 100,540" fill="#1a1410" opacity="0.18"/>
+
+          <polygon points="140,540 660,540 660,490 140,490" fill="url(#carpetTex4)"/>
+          <polygon points="140,490 660,490 660,470 140,470" fill="#1a1410" opacity="0.2"/>
+
+          <polygon points="180,470 620,470 620,410 180,410" fill="url(#carpetTex4)"/>
+          <polygon points="180,410 620,410 620,390 180,390" fill="#1a1410" opacity="0.22"/>
+
+          <polygon points="220,390 580,390 580,320 220,320" fill="url(#carpetTex4)"/>
+          <polygon points="220,320 580,320 580,300 220,300" fill="#1a1410" opacity="0.25"/>
+
+          <polygon points="260,300 540,300 540,220 260,220" fill="url(#carpetTex4)"/>
+          <polygon points="260,220 540,220 540,200 260,200" fill="#1a1410" opacity="0.28"/>
+        </g>
+        <!-- banister -->
+        <line x1="100" y1="560" x2="540" y2="200" stroke="#1a1410" stroke-width="6" opacity="0.7" stroke-linecap="round"/>
+        <!-- soft top light -->
+        <ellipse cx="400" cy="100" rx="300" ry="120" fill="#c8201f" opacity="0.08"/>
+      </svg>
+      <div class="gallery-caption">
+        <div class="gallery-caption-title">Stairs & Hallways</div>
+        <div class="gallery-caption-sub">Custom-fit installation</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal">
+      <svg class="gallery-img gallery-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-label="Game room install">
+        <defs>
+          <linearGradient id="wall5" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1a1410"/>
+            <stop offset="100%" stop-color="#0d0807"/>
+          </linearGradient>
+          <pattern id="carpetTex5" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse">
+            <rect width="5" height="5" fill="#951515"/>
+            <circle cx="2.5" cy="2.5" r="0.7" fill="#5a0808" opacity="0.7"/>
+          </pattern>
+        </defs>
+        <rect width="800" height="600" fill="url(#wall5)"/>
+        <!-- screen/TV -->
+        <rect x="280" y="120" width="240" height="140" rx="6" fill="#000000"/>
+        <rect x="290" y="130" width="220" height="120" rx="3" fill="#c8201f" opacity="0.5"/>
+        <!-- couch -->
+        <rect x="180" y="320" width="440" height="100" rx="12" fill="#2a201a" opacity="0.95"/>
+        <rect x="180" y="300" width="440" height="40" rx="10" fill="#3a2e22" opacity="0.95"/>
+        <!-- floor -->
+        <rect x="0" y="420" width="800" height="180" fill="url(#carpetTex5)"/>
+        <rect x="0" y="420" width="800" height="20" fill="#000000" opacity="0.4"/>
+        <!-- screen glow on floor -->
+        <ellipse cx="400" cy="440" rx="250" ry="40" fill="#c8201f" opacity="0.25"/>
+        <!-- ambient red accents -->
+        <circle cx="100" cy="80" r="60" fill="#c8201f" opacity="0.25"/>
+        <circle cx="700" cy="80" r="60" fill="#c8201f" opacity="0.25"/>
+      </svg>
+      <div class="gallery-caption">
+        <div class="gallery-caption-title">Game Room</div>
+        <div class="gallery-caption-sub">3-bedroom + game room job</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-footer reveal">
+    <div class="gallery-stat">
+      <div class="gallery-stat-num">100+</div>
+      <div class="gallery-stat-label">Jobs This Year</div>
+    </div>
+    <div class="gallery-divider"></div>
+    <p class="gallery-footer-text">
+      Want to see your space transformed? <a href="tel:8324350305" class="gallery-link">Request a quote →</a>
+    </p>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="reviews-inner">
+    <div class="section-header reveal">
+      <h2 class="section-title">What Houston <span class="italic">says.</span></h2>
+      <p class="section-intro">Real reviews from real Google customers — out of 558 ratings, every one of them five stars.</p>
+    </div>
+
+    <div class="review-grid">
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"The AAA team did a fantastic job replacing all the carpet in our house. Quality product, great workmanship, all at a competitive price. If you're in the market for new carpet, look no further."</p>
+        <div class="testimonial-author"><strong>Google Review</strong>Carpet replacement, full home</div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"I had some guys install my carpet and made a mess of the whole thing. AAA got back to me quickly, came same-day, and were cheaper than the other guys. Professional, courteous, respectful of my home."</p>
+        <div class="testimonial-author"><strong>Google Review</strong>Repair after botched install</div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"The AAA crew came on a moment's notice and took great care of me. Had my carpet stretched for a very reasonable price and it didn't take long at all. Second to none."</p>
+        <div class="testimonial-author"><strong>Google Review</strong>Carpet stretching</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <h2 class="cta-title">Ready for a <span class="italic">straight</span> answer?</h2>
+    <p class="cta-sub">Call or text us photos for the fastest quote. Most quotes done over the phone, by text, or with a quick same-day visit. No pressure, no upsell — just an honest estimate from a family business.</p>
+    <div class="contact-actions">
+      <a href="tel:8324350305" class="phone-display">832-435-0305</a>
+      <a href="sms:+18324350305?&body=Hi%20AAA%20Carpet%2C%20I%27d%20like%20a%20quote." class="btn-text">Text Us Photos for a Fast Quote →</a>
+    </div>
+    <p class="hours">Open Monday–Saturday · 7 AM – 6 PM · Closed Sundays<br>6713 Sherwood Dr, Houston, TX 77021</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand">
+        <div class="logo"><span class="a">A</span><span class="a">A</span><span class="a">A</span> Carpet</div>
+        <div class="brand-tagline">Repair • Installation • Sales</div>
+      </div>
+      <p class="footer-tagline">Professional carpet repair, installation, stretching, and sales — family-owned and serving Greater Houston for three generations.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#services">New Installation</a>
+      <a href="#services">Carpet Repair</a>
+      <a href="#services">Stretching</a>
+      <a href="#services">Carpet Sales</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:8324350305">832-435-0305</a>
+      <p>6713 Sherwood Dr</p>
+      <p>Houston, TX 77021</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Hours</h4>
+      <p>Mon–Sat: 7AM–6PM</p>
+      <p>Sun: Closed</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 AAA Carpet Repair, Installation & Sales</p>
+    <p>Houston, Texas</p>
+  </div>
+</footer>
+
+<!-- Carpet installer rolling out carpet across the bottom -->
+<div class="roller-track" aria-hidden="true">
+  <div class="carpet-trail"></div>
+  <div class="roller">
+    <div class="roller-bob">
+      <svg viewBox="0 0 110 90" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+        <defs>
+          <!-- skin tone gradient -->
+          <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e8b487"/>
+            <stop offset="100%" stop-color="#c89570"/>
+          </linearGradient>
+          <!-- shirt gradient -->
+          <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#1a3a6b"/>
+            <stop offset="50%" stop-color="#2a5188"/>
+            <stop offset="100%" stop-color="#1a3a6b"/>
+          </linearGradient>
+          <!-- jeans gradient -->
+          <linearGradient id="jeans" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3a5470"/>
+            <stop offset="100%" stop-color="#1f2f48"/>
+          </linearGradient>
+          <!-- carpet roll gradient -->
+          <radialGradient id="rollGrad" cx="0.4" cy="0.4">
+            <stop offset="0%" stop-color="#e84a4a"/>
+            <stop offset="60%" stop-color="#c8201f"/>
+            <stop offset="100%" stop-color="#6a0808"/>
+          </radialGradient>
+          <!-- cap gradient -->
+          <linearGradient id="capGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#e84a4a"/>
+            <stop offset="100%" stop-color="#951515"/>
+          </linearGradient>
+        </defs>
+
+        <!-- shadow under the figure -->
+        <ellipse cx="55" cy="86" rx="40" ry="2.5" fill="rgba(0,0,0,0.2)"/>
+
+        <!-- BACK LEG (drawn first so front leg overlaps) -->
+        <g class="leg-back">
+          <!-- thigh: straight rectangle, narrows slightly to ankle -->
+          <path d="M 41,58 L 45,58 L 44,82 L 40,82 Z"
+                fill="url(#jeans)" stroke="#0d1828" stroke-width="0.6"/>
+          <!-- knee crease -->
+          <path d="M 40,71 Q 42,71 44,71" fill="none" stroke="#0d1828" stroke-width="0.4" opacity="0.6"/>
+          <!-- work boot -->
+          <path d="M 38,82 L 46,82 Q 47,82 47,84 L 46,87 Q 42,88 38,87 L 37,84 Q 37,82 38,82 Z"
+                fill="#1a1410" stroke="#000" stroke-width="0.5"/>
+          <!-- boot sole -->
+          <rect x="37" y="86" width="10" height="1.5" fill="#3a2a1a" rx="0.3"/>
+          <!-- boot laces -->
+          <line x1="40" y1="83.5" x2="44" y2="83.5" stroke="#3a3a3a" stroke-width="0.4"/>
+          <line x1="40" y1="85" x2="44" y2="85" stroke="#3a3a3a" stroke-width="0.4"/>
+        </g>
+
+        <!-- BACK ARM (pushing the roll) -->
+        <g>
+          <!-- upper arm with shirt sleeve -->
+          <path d="M 38,40 Q 32,42 24,52 L 26,55 Q 35,46 40,43 Z"
+                fill="url(#shirt)" stroke="#0d1828" stroke-width="0.5"/>
+          <!-- forearm (skin) -->
+          <path d="M 24,52 Q 21,56 18,60 L 20,62 Q 23,58 26,55 Z"
+                fill="url(#skin)" stroke="#7a5840" stroke-width="0.4"/>
+          <!-- back hand gripping roll -->
+          <ellipse cx="19" cy="62" rx="3" ry="2.2" fill="url(#skin)" stroke="#7a5840" stroke-width="0.4"/>
+          <!-- knuckle line -->
+          <path d="M 17,61 Q 19,60 21,61" fill="none" stroke="#7a5840" stroke-width="0.3"/>
+        </g>
+
+        <!-- HEAD with realistic shape -->
+        <g>
+          <!-- neck -->
+          <path d="M 43,32 L 43,36 Q 46,37 49,36 L 49,32 Z" fill="url(#skin)" stroke="#7a5840" stroke-width="0.4"/>
+          <!-- neck shadow -->
+          <path d="M 43,33 Q 46,35 49,33" fill="none" stroke="#7a5840" stroke-width="0.3" opacity="0.6"/>
+          <!-- head: more oval-realistic -->
+          <ellipse cx="46" cy="24" rx="6.5" ry="7.5" fill="url(#skin)" stroke="#7a5840" stroke-width="0.5"/>
+          <!-- jaw shadow -->
+          <path d="M 41,26 Q 46,30 51,26" fill="none" stroke="#7a5840" stroke-width="0.4" opacity="0.5"/>
+          <!-- ear -->
+          <ellipse cx="40" cy="24" rx="1.2" ry="2" fill="url(#skin)" stroke="#7a5840" stroke-width="0.4"/>
+          <ellipse cx="40" cy="24.5" rx="0.5" ry="1" fill="#a87858" opacity="0.6"/>
+          <!-- hair tuft showing under cap -->
+          <path d="M 40,21 Q 42,22 44,21 M 49,21 Q 51,22 52,22" stroke="#3a2818" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+          <!-- nose -->
+          <path d="M 51,24 Q 52,26 51,27" fill="none" stroke="#7a5840" stroke-width="0.5" stroke-linecap="round"/>
+          <!-- eye (just one visible from this angle) -->
+          <ellipse cx="49" cy="23" rx="0.8" ry="0.5" fill="#1a1410"/>
+          <!-- eyebrow -->
+          <path d="M 48,21.5 L 50.5,21.8" stroke="#3a2818" stroke-width="0.6" stroke-linecap="round"/>
+          <!-- subtle smile -->
+          <path d="M 49,27.5 Q 50.5,28 51.5,27.5" fill="none" stroke="#7a5840" stroke-width="0.4" stroke-linecap="round"/>
+
+          <!-- CAP -->
+          <!-- cap crown -->
+          <path d="M 39,21 Q 39,14 46,13 Q 53,13 53,20 L 53,22 Q 46,20 39,22 Z"
+                fill="url(#capGrad)" stroke="#1a1410" stroke-width="0.7"/>
+          <!-- cap highlight -->
+          <path d="M 41,18 Q 44,15 47,15" fill="none" stroke="#ff8a8a" stroke-width="0.6" opacity="0.5"/>
+          <!-- cap brim -->
+          <path d="M 38,21 Q 46,19 56,21 L 56,22.5 Q 46,21 38,22.5 Z"
+                fill="#1a1410" stroke="#000" stroke-width="0.4"/>
+          <!-- AAA logo on cap -->
+          <text x="46" y="18.5" font-family="Georgia, serif" font-weight="900" font-style="italic"
+                font-size="3.5" fill="#ffffff" text-anchor="middle" letter-spacing="-0.2">AAA</text>
+        </g>
+
+        <!-- TORSO (work shirt) -->
+        <g>
+          <!-- main body -->
+          <path d="M 38,36 Q 36,40 36,46 L 38,58 Q 46,60 54,58 L 56,46 Q 56,40 54,36 Q 46,34 38,36 Z"
+                fill="url(#shirt)" stroke="#0d1828" stroke-width="0.7"/>
+          <!-- collar -->
+          <path d="M 43,36 L 46,40 L 49,36" fill="none" stroke="#0d1828" stroke-width="0.6" stroke-linejoin="round"/>
+          <path d="M 43,36 L 46,40 L 49,36 L 49,38 L 46,41 L 43,38 Z" fill="#0d1828" opacity="0.4"/>
+          <!-- shirt button placket -->
+          <line x1="46" y1="41" x2="46" y2="55" stroke="#0d1828" stroke-width="0.4" opacity="0.7"/>
+          <circle cx="46" cy="45" r="0.4" fill="#0d1828"/>
+          <circle cx="46" cy="50" r="0.4" fill="#0d1828"/>
+          <!-- chest pocket -->
+          <rect x="48" y="42" width="5" height="6" fill="none" stroke="#0d1828" stroke-width="0.4" opacity="0.6"/>
+          <!-- subtle wrinkle/shadow lines -->
+          <path d="M 39,48 Q 41,52 39,56" fill="none" stroke="#0d1828" stroke-width="0.3" opacity="0.4"/>
+          <path d="M 54,48 Q 52,52 54,56" fill="none" stroke="#0d1828" stroke-width="0.3" opacity="0.4"/>
+          <!-- belt -->
+          <rect x="36" y="57" width="20" height="2.5" fill="#2a1810" stroke="#000" stroke-width="0.4"/>
+          <rect x="44.5" y="57" width="3" height="2.5" fill="#a88a4a" stroke="#5a4520" stroke-width="0.3"/>
+        </g>
+
+        <!-- FRONT ARM (reaching toward roll) -->
+        <g>
+          <!-- upper arm with shirt sleeve -->
+          <path d="M 54,40 Q 60,44 68,52 L 66,55 Q 58,46 52,43 Z"
+                fill="url(#shirt)" stroke="#0d1828" stroke-width="0.5"/>
+          <!-- sleeve cuff -->
+          <path d="M 65,51 L 68,52 L 67,54 L 64,53 Z" fill="#0d1828"/>
+          <!-- forearm (skin) -->
+          <path d="M 65,53 Q 70,56 73,60 L 71,62 Q 67,58 64,55 Z"
+                fill="url(#skin)" stroke="#7a5840" stroke-width="0.4"/>
+          <!-- front hand on roll -->
+          <ellipse cx="72" cy="62" rx="3.2" ry="2.4" fill="url(#skin)" stroke="#7a5840" stroke-width="0.4"/>
+          <!-- knuckles -->
+          <path d="M 70,61 Q 72,60 74,61" fill="none" stroke="#7a5840" stroke-width="0.3"/>
+          <!-- thumb -->
+          <ellipse cx="74" cy="63" rx="1" ry="0.7" fill="url(#skin)"/>
+        </g>
+
+        <!-- FRONT LEG (drawn after torso, mirror of back leg) -->
+        <g class="leg-front">
+          <!-- thigh: same dimensions as back leg, shifted right -->
+          <path d="M 47,58 L 51,58 L 52,82 L 48,82 Z"
+                fill="url(#jeans)" stroke="#0d1828" stroke-width="0.6"/>
+          <!-- knee highlight -->
+          <path d="M 48,71 Q 50,71 52,71" fill="none" stroke="#5a7090" stroke-width="0.4" opacity="0.5"/>
+          <!-- knee crease -->
+          <path d="M 48,72 Q 50,72 52,72" fill="none" stroke="#0d1828" stroke-width="0.4" opacity="0.6"/>
+          <!-- work boot (same size as back boot) -->
+          <path d="M 46,82 L 54,82 Q 55,82 55,84 L 54,87 Q 50,88 46,87 L 45,84 Q 45,82 46,82 Z"
+                fill="#1a1410" stroke="#000" stroke-width="0.5"/>
+          <!-- boot toe cap detail -->
+          <path d="M 53,82 Q 55,82 55,84 L 54,86 Q 53,86 53,84 Z" fill="#2a2018"/>
+          <!-- boot sole -->
+          <rect x="45" y="86" width="10" height="1.5" fill="#3a2a1a" rx="0.3"/>
+          <!-- boot laces -->
+          <line x1="48" y1="83.5" x2="52" y2="83.5" stroke="#3a3a3a" stroke-width="0.4"/>
+          <line x1="48" y1="85" x2="52" y2="85" stroke="#3a3a3a" stroke-width="0.4"/>
+        </g>
+
+        <!-- belt overlay (drawn AFTER legs so it covers the hip seam cleanly) -->
+        <rect x="36" y="57" width="20" height="2.5" fill="#2a1810" stroke="#000" stroke-width="0.4"/>
+        <rect x="44.5" y="57" width="3" height="2.5" fill="#a88a4a" stroke="#5a4520" stroke-width="0.3"/>
+
+        <!-- THE CARPET ROLL he's pushing -->
+        <g>
+          <!-- shadow under roll -->
+          <ellipse cx="88" cy="86" rx="14" ry="2.5" fill="rgba(0,0,0,0.3)"/>
+
+          <!-- roll cylinder (spinning) -->
+          <g class="carpet-roll-spin">
+            <!-- main roll body -->
+            <circle cx="88" cy="72" r="13" fill="url(#rollGrad)" stroke="#0d0404" stroke-width="1"/>
+
+            <!-- texture lines suggesting fabric wrap -->
+            <circle cx="88" cy="72" r="13" fill="none" stroke="#5a0808" stroke-width="0.3" opacity="0.5"/>
+            <circle cx="88" cy="72" r="10" fill="none" stroke="#5a0808" stroke-width="0.4" opacity="0.6"/>
+            <circle cx="88" cy="72" r="7" fill="none" stroke="#5a0808" stroke-width="0.5" opacity="0.7"/>
+            <circle cx="88" cy="72" r="4" fill="none" stroke="#5a0808" stroke-width="0.5" opacity="0.8"/>
+
+            <!-- subtle radial fibers -->
+            <line x1="88" y1="60" x2="88" y2="63" stroke="#3a0404" stroke-width="0.4"/>
+            <line x1="98" y1="69" x2="95" y2="70" stroke="#3a0404" stroke-width="0.4"/>
+            <line x1="98" y1="75" x2="95" y2="74" stroke="#3a0404" stroke-width="0.4"/>
+
+            <!-- center hub (cardboard tube) -->
+            <circle cx="88" cy="72" r="2.5" fill="#8a6a3a" stroke="#3a2810" stroke-width="0.5"/>
+            <circle cx="88" cy="72" r="1.5" fill="#3a2810"/>
+
+            <!-- highlight on roll -->
+            <ellipse cx="84" cy="68" rx="3" ry="2" fill="#ff8080" opacity="0.35"/>
+          </g>
+
+          <!-- carpet edge coming off the bottom-back of the roll (this is what's being unrolled) -->
+          <path d="M 75,82 Q 80,84 95,83 L 95,86 Q 80,87 75,85 Z"
+                fill="url(#rollGrad)" stroke="#0d0404" stroke-width="0.6"/>
+          <!-- carpet texture stripe -->
+          <path d="M 76,83.5 Q 80,85 94,84.5" fill="none" stroke="#5a0808" stroke-width="0.4" opacity="0.6"/>
+        </g>
+
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Call CTA (appears after scrolling past hero) -->
+<a href="tel:8324350305" class="float-cta" id="floatCta" aria-label="Call AAA Carpet Repair, Installation and Sales">
+  <span class="float-cta-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </svg>
+  </span>
+  <span class="float-cta-text">
+    <small>Tap to call</small>
+    <strong>832-435-0305</strong>
+  </span>
+</a>
+
+<!-- Call Modal (shown on desktop when tel: link clicked) -->
+<div class="call-modal" id="callModal" role="dialog" aria-modal="true" aria-labelledby="callModalTitle">
+  <div class="call-modal-card">
+    <button class="call-modal-close" id="closeCallModalBtn" aria-label="Close" type="button">×</button>
+    <div class="call-modal-eyebrow">— Give Us a Call</div>
+    <h3 class="call-modal-title" id="callModalTitle">Let's talk about your <span class="italic">project.</span></h3>
+    <p class="call-modal-sub">Most quotes are done over the phone or with a quick same-day visit. No pressure, no upsell.</p>
+    <div class="open-status" id="openStatus">
+      <span class="open-dot" id="openDot"></span>
+      <span id="openText">Checking hours…</span>
+    </div>
+    <div class="call-modal-number">832-435-0305</div>
+    <div class="call-modal-hours">Mon–Sat · 7 AM – 6 PM</div>
+    <div class="call-modal-actions">
+      <button class="modal-btn modal-btn-primary" id="copyBtn" type="button">
+        Copy phone number
+      </button>
+      <a class="modal-btn modal-btn-secondary" href="sms:+18324350305?&body=Hi%20AAA%20Carpet%2C%20I%27d%20like%20a%20quote.">
+        Send a text instead
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (() => {
+    'use strict';
+
+    // Smart Call CTAs
+    // On mobile: tel: link works natively. On desktop: show a modal with number + copy option.
+    const PHONE_DISPLAY = '832-435-0305';
+    const modal = document.getElementById('callModal');
+    const copyBtn = document.getElementById('copyBtn');
+    const closeBtn = document.getElementById('closeCallModalBtn');
+
+    function isMobileDevice() {
+      const ua = navigator.userAgent || '';
+      const isMobileUA = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+      const isSmallScreen = window.matchMedia('(max-width: 900px)').matches;
+      return isMobileUA || isSmallScreen;
+    }
+
+    function updateOpenStatus() {
+      // Business hours are Houston (Central) time, not the visitor's local time.
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Chicago',
+        weekday: 'short',
+        hour: 'numeric',
+        hourCycle: 'h23',
+      }).formatToParts(new Date());
+      const weekday = parts.find((p) => p.type === 'weekday').value;
+      const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(weekday);
+      const hour = Number(parts.find((p) => p.type === 'hour').value);
+      const dot = document.getElementById('openDot');
+      const statusText = document.getElementById('openText');
+
+      if (!dot || !statusText) return;
+
+      const isOpen = day !== 0 && hour >= 7 && hour < 18;
+
+      if (isOpen) {
+        dot.classList.remove('closed');
+        statusText.textContent = 'Open now — answer right away';
+      } else {
+        dot.classList.add('closed');
+        const nextOpen = day === 0 ? 'Closed today — opens Monday at 7 AM' :
+                        day === 6 && hour >= 18 ? 'Closed — opens Monday at 7 AM' :
+                        hour >= 18 ? 'Closed — opens tomorrow at 7 AM' :
+                        'Closed — opens at 7 AM';
+        statusText.textContent = nextOpen;
+      }
+    }
+
+    function openCallModal() {
+      if (!modal) return;
+      updateOpenStatus();
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCallModal() {
+      if (!modal) return;
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      if (copyBtn) {
+        copyBtn.textContent = 'Copy phone number';
+        copyBtn.classList.remove('copied');
+      }
+    }
+
+    async function copyNumber() {
+      if (!copyBtn) return;
+
+      try {
+        if (!window.isSecureContext || !navigator.clipboard) {
+          throw new Error('Clipboard unavailable outside a secure context.');
+        }
+
+        await navigator.clipboard.writeText(PHONE_DISPLAY);
+        copyBtn.textContent = '✓ Copied — ' + PHONE_DISPLAY;
+        copyBtn.classList.add('copied');
+
+        window.setTimeout(() => {
+          copyBtn.textContent = 'Copy phone number';
+          copyBtn.classList.remove('copied');
+        }, 2500);
+      } catch {
+        copyBtn.textContent = PHONE_DISPLAY;
+      }
+    }
+
+    document.querySelectorAll('a[href^="tel:"], a[href^="sms:"]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        if (!isMobileDevice()) {
+          event.preventDefault();
+          openCallModal();
+        }
+      });
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeCallModal);
+    }
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', copyNumber);
+    }
+
+    if (modal) {
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeCallModal();
+      });
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal && modal.classList.contains('open')) {
+        closeCallModal();
+      }
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            window.setTimeout(() => entry.target.classList.add('in'), index * 80);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      reveals.forEach((element) => observer.observe(element));
+    } else {
+      reveals.forEach((element) => element.classList.add('in'));
+    }
+
+    // Floating CTA: appear after scrolling past hero
+    const floatCta = document.getElementById('floatCta');
+    const hero = document.querySelector('.hero');
+    let floatTicking = false;
+
+    function updateFloatCta() {
+      if (!floatCta || !hero) return;
+
+      const heroBottom = hero.offsetTop + hero.offsetHeight - 100;
+      const scrolled = window.scrollY;
+      const footer = document.querySelector('footer');
+      const nearFooter = footer && (scrolled + window.innerHeight) > footer.offsetTop + 80;
+
+      if (scrolled > heroBottom && !nearFooter) {
+        floatCta.classList.add('visible');
+      } else {
+        floatCta.classList.remove('visible');
+      }
+
+      floatTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!floatTicking) {
+        window.requestAnimationFrame(updateFloatCta);
+        floatTicking = true;
+      }
+    }, { passive: true });
+
+    updateFloatCta();
+  })();
+</script>
+
+</body>
+</html>
